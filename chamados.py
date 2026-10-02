@@ -55,5 +55,52 @@ chamados = [
 # 1. pesquisa por usuário
 # 2. pesquisa por prioridade
 # 3. pesquisa por status
-# 4. pesquisa por prioridade e status
-# 5. 
+# 4. chamados urgentes (chamados em "estado críticos" e "em aberto")
+# 5. abrir chamado (criar chamado, "em aberto")
+# 6. "resolver" chamado (mudar status para "em progresso")
+# 7. fechar chamado (mudar status para "fechado")
+# 0. sair do sistema
+
+def usuario():
+    escolha = input("Digite o nome do usuário que você deseja ver o chamado\n").title()
+    for usuario in chamados:
+        if usuario["usuario"] == escolha:
+            print(usuario)
+
+def prioridade():
+    escolha = input("Qual a prioridade do chamado?\nCrítica, Alta, Média ou Baixa\n").capitalize()
+    for chamado in chamados:
+        if chamado["prioridade"] == escolha:
+          print(chamado)
+
+def status():
+    escolha = input("Qual o status do chamado?\nAberto, Em progresso ou Fechado\n").capitalize()
+    for chamado in chamados:
+        if chamado["status"] == escolha:
+            print(chamado)
+        
+
+while True:
+    print("------------------\n     SISTEMA \n------------------\n1. Pesquisa por usuário\n2. Pesquisa por prioridade\n3. Pesquisa por status\n4. Chamados urgentes\n5. Abrir chamado\n6. Resolver chamado\n7. Fechar chamado\n0. Sair")
+    print( )
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == "1":
+      usuario()
+    elif opcao == "2":
+      prioridade()
+    elif opcao == "3":
+      status()
+    elif opcao == "4":
+        print("urgência")
+    elif opcao == "5":
+        print("abrir")
+    elif opcao == "6":
+        print("modificar p/ em progresso")
+    elif opcao == "7":
+        print("fechar")
+    elif opcao == "0":
+        print("Saindo. . .")
+        break
+    else:
+        print("Opção Inválida. Tente novamente.")

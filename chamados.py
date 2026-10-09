@@ -73,12 +73,39 @@ def prioridade():
         if chamado["prioridade"] == escolha:
           print(chamado)
 
+def urgencia():
+    for chamado in chamados:
+        if chamado["prioridade"] == "Crítica" and chamado["status"] == "Aberto":
+          print(chamado)
+
 def status():
     escolha = input("Qual o status do chamado?\nAberto, Em progresso ou Fechado\n").capitalize()
     for chamado in chamados:
         if chamado["status"] == escolha:
             print(chamado)
-        
+
+def criar():
+    maior_id = max([chamado["id"] for chamado in chamados], default = 0)
+    novo_id = maior_id +1
+
+    titulo_tarefa_nova = input("Digite o título da tarefa nova\n").capitalize()
+    prioridade_tarefa_nova = input("Digite a prioridade da tarefa nova\n").capitalize()
+    status_tarefa_nova = input("Digite o status da tarefa nova\n").capitalize()
+    usuario_tarefa_nova = input("Digite o nome do usuário que está com problemas\n").capitalize()
+
+    chamados.append({"id":novo_id, "titulo":titulo_tarefa_nova, "prioridade":prioridade_tarefa_nova, "status":status_tarefa_nova, "usuario":usuario_tarefa_nova })
+
+def progresso():
+    progresso = input("Digite o título do chamado que você deseja fechar\n").capitalize()
+    for chamado in chamados:
+        if chamado["titulo"] == progresso:
+            chamado["status"] = "Em progresso"
+
+def fechar():
+    fechar = input("Digite o chamado que você deseja fechar\n").capitalize()
+    for chamado in chamados:
+        if chamado["titulo"] == fechar:
+            chamado["status"] = "Fechado"
 
 while True:
     print("------------------\n     SISTEMA \n------------------\n1. Pesquisa por usuário\n2. Pesquisa por prioridade\n3. Pesquisa por status\n4. Chamados urgentes\n5. Abrir chamado\n6. Resolver chamado\n7. Fechar chamado\n0. Sair")
@@ -92,13 +119,13 @@ while True:
     elif opcao == "3":
       status()
     elif opcao == "4":
-        print("urgência")
+        urgencia()
     elif opcao == "5":
-        print("abrir")
+        criar()
     elif opcao == "6":
-        print("modificar p/ em progresso")
+        progresso()
     elif opcao == "7":
-        print("fechar")
+        fechar()
     elif opcao == "0":
         print("Saindo. . .")
         break
